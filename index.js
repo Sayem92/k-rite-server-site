@@ -63,7 +63,22 @@ async function run() {
       res.send(result);
     });
 
-    
+    // update task  ------------------------------
+    app.put("/addTask/:id", async (req, res) => {
+      const id = req.params.id;
+      const addTask = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: addTask,
+      };
+      const result = await addTaskCollection.updateOne(
+        filter,
+        updateDoc,
+        options
+      );
+      res.send(result);
+    });
   } catch (err) {
     console.log(err);
   }
