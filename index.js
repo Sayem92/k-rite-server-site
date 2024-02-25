@@ -55,6 +55,14 @@ async function run() {
       res.send(result);
     });
 
+    // delete my task-----------
+    app.delete("/myTask/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await addTaskCollection.deleteOne(query);
+      res.send(result);
+    });
+
     
   } catch (err) {
     console.log(err);
