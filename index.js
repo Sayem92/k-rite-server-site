@@ -50,7 +50,7 @@ async function run() {
     // get my task details ---
     app.get("/details/:id", async (req, res) => {
       const id = req.params.id;
-      const query = { _id: ObjectId(id) };
+      const query = { _id: new ObjectId(id) };
       const result = await addTaskCollection.findOne(query);
       res.send(result);
     });
